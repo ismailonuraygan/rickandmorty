@@ -1,0 +1,49 @@
+@use "../../styles/variables/index" as v;
+
+.wrapper {
+    width: 500px;
+    img{
+        margin-bottom: 24px;
+        border-radius: 16px;
+    }
+}
+.subHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    margin-top: 6px;
+    line-height: 22px;
+}
+.statusWrapper{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.alive {
+  background-color: v.$green;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.dead {
+  background-color: v.$dead;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.unknown {
+  background-color: v.$unknown;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.typeWrapper{
+    display: flex;
+    font-weight: 300;
+    color: #818181;
+    font-style: italic;
+}
