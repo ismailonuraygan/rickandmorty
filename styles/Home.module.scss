@@ -1,0 +1,26 @@
+.mainWrapper {
+  height: 100vh;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 40px 46px;
+  gap: 50px;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .cards {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 17px;
+  }
+}
