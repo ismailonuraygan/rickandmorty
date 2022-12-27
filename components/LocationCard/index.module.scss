@@ -1,0 +1,45 @@
+@use "../../styles/variables/index" as v;
+
+.wrapper {
+  background-color: v.$yellow;
+  width: 400px;
+  padding-top: 17px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 15px;
+  border-radius: 15px;
+  flex-wrap: wrap;
+}
+
+.cardHeader {
+  font-family: v.$primary-fonts;
+  margin-bottom: 10px;
+  line-height: 22px;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.keyValue {
+  display: flex;
+  align-items: baseline;
+  line-height: 22px;
+}
+
+.key {
+  width: 50%;
+}
+
+.value {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 640px) {
+  .wrapper {
+    width: 345px;
+  }
+}
