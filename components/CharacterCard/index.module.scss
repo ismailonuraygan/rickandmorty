@@ -1,0 +1,63 @@
+@use "../../styles/variables/index" as v;
+
+.wrapper {
+}
+
+.imageWrapper {
+  border-radius: 15px;
+}
+
+.characterName {
+  margin: 10px 0;
+  line-height: 30px;
+  width: 300px;
+  h1 {
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.subHeader {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.alive {
+  background-color: v.$green;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.dead {
+  background-color: v.$dead;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.unknown {
+  background-color: v.$unknown;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.types {
+  h3 {
+    font-weight: 500;
+    font-size: 16px;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    text-decoration: none;
+  }
+}
