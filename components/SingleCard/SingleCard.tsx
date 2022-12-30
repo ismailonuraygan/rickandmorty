@@ -10,7 +10,7 @@ const SingleCard = ({ character }: { character: Character }) => {
     setTimeout(() => {
       setLoading(false);
       console.log("loading has changed");
-    }, 10000);
+    }, 1000);
   }, []);
   console.log(character);
   return (

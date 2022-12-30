@@ -10,7 +10,7 @@ const OtherCharacterCard = ({ data }: { data: Character }) => {
     setTimeout(() => {
       setLoading(false);
       console.log("loading has changed");
-    }, 10000);
+    }, 1000);
   }, []);
   return (
     <>
