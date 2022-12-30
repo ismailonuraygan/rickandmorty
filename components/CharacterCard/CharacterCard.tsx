@@ -1,9 +1,10 @@
-import React, { use, useEffect, useState } from "react";
+import React from "react";
 import styles from "./index.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+import { Character } from "../../types/types";
 
-const CharacterCard = ({ data }) => {
+const CharacterCard  = ({ data }: {data: Character}) => {
   return (
     <>
       <Link href={`/character/${data.id}`} className={styles.link}>
