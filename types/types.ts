@@ -47,7 +47,7 @@ export interface OtherCharactersResults {
     results: Character[]
 }
 
-export interface Location{
+export interface Location {
     name: string;
     url: string
 }
@@ -60,4 +60,13 @@ export interface LocationType {
     url: string;
     created: Date;
     residents: string[];
+}
+
+export interface FilterProps {
+    datas: Character[];
+    filtered: Character[];
+    allCharacters: Character[];
+    status: string;
+    setFiltered: (value: Character[]) => void
+    setStatus: (value: string) => void
 }
