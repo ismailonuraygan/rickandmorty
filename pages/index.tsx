@@ -1,44 +1,71 @@
-import type { NextPage } from "next";
+/* Hooks */
 import Link from "next/link";
+import React, { useState } from "react";
+
+/* Components */
 import Header from "../components/Header/Header";
 import Location from "../components/LocationCard/Location";
-import styles from "../styles/Home.module.scss";
-import React, { useState } from "react";
-import { getLocations } from "./api";
-import Pagination from "../components/Pagination/Pagination";
-import { paginate } from "../helpers/paginate";
 
-const Home = ({ data }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
+/* API */
+import { getLocations } from "./api";
+
+/* Style */
+import styles from "../styles/Home.module.scss";
+
+
+/*Third party libraries */
+import ReactPaginate from "react-paginate";
+
+/* Icons */
+import Previous from "../assets/icons/previous.svg";
+import Next from "../assets/icons/next.svg";
+
+/* Types */
+import type { NextPage } from "next";
+import { LocationType } from "../types/types";
+
+const Home: NextPage = ({ data }: { data: LocationType[] }) => {
+  console.log(data);
+  const [pageNumber, setPageNumber] = useState<number>(0);
+  const usersPerPage = 3;
+  const pagesVisited = pageNumber * usersPerPage;
+  const pageCount = Math.ceil(data.length / usersPerPage);
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
 
   console.log(data);
 
-  const onPageChange = (page) => {
-    setCurrentPage(page);
-  };
-  const paginatedPosts = paginate(data, currentPage, itemsPerPage);
   return (
     <div className={styles.mainWrapper}>
       <Header />
       <div className={styles.cards}>
-        {paginatedPosts.map((item) => (
-          <Link
-            className={styles.link}
-            key={item.id}
-            href={`/characters/${item.id}`}
-            as={`/characters/${item.id}`}
-          >
-            <Location data={item} />
-          </Link>
+        {data.slice(pagesVisited, pagesVisited + usersPerPage).map((item) => (
+          <div key={item.id} style={{ height: "130px" }}>
+            <Link
+              className={styles.link}
+              key={item.id}
+              href={`/characters/${item.id}`}
+              as={`/characters/${item.id}`}
+            >
+              <Location data={item} />
+            </Link>
+          </div>
         ))}
       </div>
-      <Pagination
-        items={data.length}
-        currentPage={currentPage}
-        pageSize={itemsPerPage}
-        onPageChange={onPageChange}
-
+      <ReactPaginate
+        previousLabel={<Previous />}
+        nextLabel={<Next />}
+        breakLabel={"..."}
+        marginPagesDisplayed={1}
+        pageRangeDisplayed={2}
+        pageCount={pageCount}
+        onPageChange={changePage}
+        containerClassName={styles.paginationBttns}
+        previousLinkClassName={styles.previousBttn}
+        nextLinkClassName={styles.nextBttn}
+        disabledClassName={styles.paginationDisabled}
+        activeClassName={styles.paginationActive}
       />
     </div>
   );
