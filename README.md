@@ -7,7 +7,7 @@
 - App has support for mobile users as well as desktop users.
 
 ## Live
-www.dummyurl.com
+https://rickandmorty-woad.vercel.app/
 
 ## Installation
 
