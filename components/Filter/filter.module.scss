@@ -1,0 +1,129 @@
+@use "../../styles/variables/index" as v;
+
+.wrapper {
+  margin-left: 40px;
+  margin-top: 35px;
+  h3 {
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+    .wrapper{
+      margin-left: 14px;
+      margin-top: 10px;
+    }
+}
+
+.buttonWrapper {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+}
+.allButton {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 12px;
+  align-items: center;
+  width: 120px;
+  height: 40px;
+  border-radius: 50px;
+  background-color: rgba(v.$yellow, 10%);
+  border: 1px solid v.$yellow;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(v.$yellow, 20%);
+  }
+  &:focus {
+    background-color: rgba(v.$yellow, 50%);
+  }
+  &:default{
+    background-color: rgba(v.$yellow, 50%);
+  }
+  .allStatus {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: v.$yellow;
+    margin-left: 10px;
+  }
+}
+.deadButton {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 12px;
+  align-items: center;
+  width: 120px;
+  height: 40px;
+  border-radius: 50px;
+  background-color: rgba(v.$dead, 10%);
+  border: 1px solid v.$dead;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(v.$dead, 20%);
+  }
+  &:focus {
+    background-color: rgba(v.$dead, 50%);
+  }
+  .deadStatus {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: v.$dead;
+    margin-left: 10px;
+  }
+}
+
+.aliveButton {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 12px;
+  align-items: center;
+  width: 120px;
+  height: 40px;
+  border-radius: 50px;
+  border: 1px solid v.$green;
+  background-color: rgba(v.$green, 10%);
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(v.$green, 20%);
+  }
+  &:focus {
+    background-color: rgba(v.$green, 50%);
+  }
+  .aliveStatus {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: v.$green;
+    margin-left: 10px;
+  }
+}
+
+.unknownButton {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 12px;
+  align-items: center;
+  width: 120px;
+  height: 40px;
+  border-radius: 50px;
+  border: 1px solid v.$unknown;
+  background-color: rgba(v.$unknown, 10%);
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(v.$unknown, 20%);
+  }
+  &:focus {
+    background-color: rgba(v.$unknown, 50%);
+  }
+  .unknownStatus {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: v.$unknown;
+    margin-left: 10px;
+  }
+}
+
+
