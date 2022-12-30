@@ -1,6 +1,6 @@
 /* Hooks */
 import Link from "next/link";
-import React, { useState } from "react";
+import React, {  useState } from "react";
 
 /* Components */
 import Header from "../components/Header/Header";
@@ -11,7 +11,6 @@ import { getLocations } from "./api";
 
 /* Style */
 import styles from "../styles/Home.module.scss";
-
 
 /*Third party libraries */
 import ReactPaginate from "react-paginate";
@@ -24,16 +23,16 @@ import Next from "../assets/icons/next.svg";
 import type { NextPage } from "next";
 import { LocationType } from "../types/types";
 
-const Home: NextPage = ({ data }: { data: LocationType[] }) => {
+const Home = ({ data }: { data: LocationType[] }) => {
   console.log(data);
   const [pageNumber, setPageNumber] = useState<number>(0);
+
   const usersPerPage = 3;
   const pagesVisited = pageNumber * usersPerPage;
   const pageCount = Math.ceil(data.length / usersPerPage);
-  const changePage = ({ selected }) => {
+  const changePage = ({ selected }: { selected: number }) => {
     setPageNumber(selected);
   };
-
   console.log(data);
 
   return (
