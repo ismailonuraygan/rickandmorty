@@ -1,20 +1,28 @@
+/* Hooks */
 import { useRouter } from "next/router";
 import React from "react";
+
+/* Components */
 import Header from "../../components/Header/Header";
 import OtherCharacterCard from "../../components/OtherCharacterCard/OtherCharacterCard";
 import SingleCard from "../../components/SingleCard/SingleCard";
+
+/* Style */
 import styles from "./index.module.scss";
 
-const CharacterId = (props) => {
+/* Types */
+import { Character } from "../../types/types";
+import { GetServerSideProps, NextPage } from "next";
+
+const CharacterId = ({
+  character,
+  otherCharacters,
+}: {
+  character: Character;
+  otherCharacters: Character[];
+}) => {
   const { query } = useRouter();
-  const {
-    character,
-    characterStatus,
-    characterSpecies,
-    otherCharacters,
-    characterLocation,
-  } = props;
-  console.log(characterLocation);
+
   console.log(otherCharacters);
 
   return (
@@ -37,18 +45,15 @@ const CharacterId = (props) => {
 
 export default CharacterId;
 
-export async function getServerSideProps(context) {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const { characterId } = context.query;
-  console.log(characterId);
+
   const res = await fetch(
     `https://rickandmortyapi.com/api/character/${characterId}`
   );
-  const character = await res.json();
+  const character: Character = await res.json();
   const characterStatus = character.status.toLowerCase();
   const characterSpecies = character.species.toLowerCase();
-  const characterLocation = character.location.name
-    .replace(/\s+/g, "")
-    .toLowerCase();
   const otherCharacters = await (
     await fetch(
       `https://rickandmortyapi.com/api/character/?species=${characterSpecies}&status=${characterStatus}`
@@ -58,10 +63,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       character,
-      characterStatus,
-      characterSpecies,
       otherCharacters: otherCharacters.results,
-      characterLocation,
-    },
+    }
   };
-}
+};

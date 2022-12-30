@@ -6,13 +6,12 @@ import LeftArrow from "../../assets/icons/leftArrow.svg";
 
 const Header = () => {
   const router = useRouter();
-  console.log(router.query);
 
   return (
     <>
       <div className={styles.wrapper}>
         {router.asPath.includes("/character") ? (
-          <div className={styles.back} onClick={() => router.back()} >
+          <div className={styles.back} onClick={() => router.back()}>
             <LeftArrow />
           </div>
         ) : (
