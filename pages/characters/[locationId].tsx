@@ -1,67 +1,103 @@
+/* Hooks */
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+
+/* Styles */
 import styles from "./index.module.scss";
+
+/* Components */
 import Header from "../../components/Header/Header";
+import Filter from "../../components/Filter/Filter";
 import CharacterCard from "../../components/CharacterCard/CharacterCard";
-import Pagination from "../../components/Pagination/Pagination";
-import { paginate } from "../../helpers/paginate";
 
-const Characters = (props) => {
+/* Third party library */
+import ReactPaginate from "react-paginate";
+
+/* Icons */
+import Next from "../../assets/icons/next.svg";
+import Previous from "../../assets/icons/previous.svg";
+
+/* Types */
+import { Character, LocationType } from "../../types/types";
+import { GetServerSideProps } from "next";
+
+const Characters = ({ allCharacters }: { allCharacters: Character[] }) => {
   const router = useRouter();
+
+  const [datas, setDatas] = useState(allCharacters);
+  const [filtered, setFiltered] = useState(allCharacters);
+  const [status, setStatus] = useState("All");
+  /* console.log(allCharacters); */
   const { locationId } = router.query;
-  const { characters, allCharacters } = props;
-  console.log(allCharacters, "a");
+  console.log(filtered, "a");
+
   /*Pagination*/
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20;
-
-  console.log(allCharacters);
-
-  const onPageChange = (page) => {
-    setCurrentPage(page);
+  const [pageNumber, setPageNumber] = useState<number>(0);
+  const usersPerPage = 4;
+  const pagesVisited = pageNumber * usersPerPage;
+  const pageCount = Math.ceil(filtered.length / usersPerPage);
+  const changePage = ({ selected }: { selected: number }) => {
+    setPageNumber(selected);
   };
-  const paginatedPosts = paginate(allCharacters, currentPage, itemsPerPage);
+
+  /* console.log(allCharacters); */
   return (
-    <div>
+    <div className={styles.mainWrapper}>
       <Header />
+      <Filter
+        datas={datas}
+        setFiltered={setFiltered}
+        filtered={filtered}
+        status={status}
+        setStatus={setStatus}
+        allCharacters={allCharacters}
+      />
       <div className={styles.wrapper}>
-        {paginatedPosts?.map((data, index) => (
-          <CharacterCard key={index} data={data} />
-        ))}
+        {filtered
+          ?.slice(pagesVisited, pagesVisited + usersPerPage)
+          .map((data, index) => (
+            <CharacterCard key={index} data={data} />
+          ))}
       </div>
-      <Pagination
-        items={allCharacters.length}
-        currentPage={currentPage}
-        pageSize={itemsPerPage}
-        onPageChange={onPageChange}
+      <ReactPaginate
+        previousLabel={<Previous />}
+        nextLabel={<Next />}
+        breakLabel={"..."}
+        marginPagesDisplayed={1}
+        pageRangeDisplayed={2}
+        pageCount={pageCount}
+        onPageChange={changePage}
+        containerClassName={styles.paginationBttns}
+        previousLinkClassName={styles.previousBttn}
+        nextLinkClassName={styles.nextBttn}
+        disabledClassName={styles.paginationDisabled}
+        activeClassName={styles.paginationActive}
       />
     </div>
   );
 };
 
-export async function getServerSideProps(context) {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const { locationId } = context.query;
-  console.log(locationId);
+
   const res = await fetch(
     `https://rickandmortyapi.com/api/location/${locationId}`
   );
-  const location = await res.json();
+  const location: LocationType = await res.json();
   const charactersURL = location.residents;
- 
+
   /* All characters from specific location*/
-  const allCharacters = await Promise.all(
+  const allCharacters: Character[] = await Promise.all(
     charactersURL.map(async (url) => {
       const res = await (await fetch(url)).json();
       return res;
     })
   );
-
   return {
     props: {
-      characters: charactersURL,
       allCharacters,
     },
   };
-}
+};
 
 export default Characters;
