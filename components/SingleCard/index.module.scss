@@ -1,24 +1,34 @@
 @use "../../styles/variables/index" as v;
 
 .wrapper {
-    width: 500px;
-    img{
-        margin-bottom: 24px;
-        border-radius: 16px;
-    }
+  width: 500px;
+  img {
+    margin-bottom: 24px;
+    border-radius: 16px;
+  }
 }
-.subHeader{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 6px;
-    margin-top: 6px;
-    line-height: 22px;
+.subHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-top: 6px;
+  line-height: 22px;
 }
-.statusWrapper{
-    display: flex;
-    align-items: center;
-    gap: 6px;
+.skeletonImg {
+  width: 500px;
+  height: 500px;
+}
+.subHead {
+  margin-top: 8px;
+}
+.skeletonRow{
+  margin-top: 16px;
+}
+.statusWrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 .alive {
   background-color: v.$green;
@@ -41,22 +51,24 @@
   border-radius: 50%;
 }
 
-.typeWrapper{
-    display: flex;
-    font-weight: 300;
-    color: #818181;
-    font-style: italic;
+.typeWrapper {
+  display: flex;
+  font-weight: 300;
+  color: #818181;
+  font-style: italic;
 }
 
-
 @media screen and (max-width: 640px) {
-  .wrapper{
+  .wrapper {
     width: 345px;
-    img{
+    img {
       width: 345px;
       height: 345px;
       margin-bottom: 16px;
     }
   }
-  
+  .skeletonImg {
+    width: 345px;
+    height: 345px;
+  }
 }

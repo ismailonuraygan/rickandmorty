@@ -9,7 +9,6 @@
   padding-bottom: 15px;
   border-radius: 15px;
   flex-wrap: wrap;
-  
 }
 
 .cardHeader {
@@ -40,8 +39,16 @@
   text-overflow: ellipsis;
 }
 
+.cardSkeleton{
+
+  width: 400px;
+}
+
 @media screen and (max-width: 640px) {
   .wrapper {
+    width: 345px;
+  }
+  .cardSkeleton{
     width: 345px;
   }
 }
