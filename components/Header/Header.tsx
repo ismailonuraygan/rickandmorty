@@ -11,14 +11,14 @@ const Header = () => {
     <>
       <div className={styles.wrapper}>
         {router.asPath.includes("/character") ? (
-          <div className={styles.back} onClick={() => router.back()}>
-            <LeftArrow />
+          <div className={styles.back}>
+            <LeftArrow onClick={() => router.back()} />
           </div>
         ) : (
           ""
         )}
-        <div className={styles.logo} onClick={() => router.replace("/")}>
-          <Logo />
+        <div className={styles.logo} >
+          <Logo onClick={() => router.replace("/")}/>
         </div>
       </div>
     </>
