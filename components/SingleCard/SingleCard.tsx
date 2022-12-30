@@ -9,10 +9,9 @@ const SingleCard = ({ character }: { character: Character }) => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-      console.log("loading has changed");
     }, 1000);
   }, []);
-  console.log(character);
+
   return (
     <>
       {isLoading ? (

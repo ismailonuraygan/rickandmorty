@@ -19,7 +19,7 @@ const Filter: FC<FilterProps> = ({
       return character.status === status;
     });
     setFiltered(filteredCharacters);
-    console.log(status);
+
   }, [status]);
 
   return (

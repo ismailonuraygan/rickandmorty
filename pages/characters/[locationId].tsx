@@ -27,9 +27,9 @@ const Characters = ({ allCharacters }: { allCharacters: Character[] }) => {
   const [datas, setDatas] = useState(allCharacters);
   const [filtered, setFiltered] = useState(allCharacters);
   const [status, setStatus] = useState("All");
-  /* console.log(allCharacters); */
+
   const { locationId } = router.query;
-  console.log(filtered, "a");
+
 
   /*Pagination*/
   const [pageNumber, setPageNumber] = useState<number>(0);
@@ -40,7 +40,7 @@ const Characters = ({ allCharacters }: { allCharacters: Character[] }) => {
     setPageNumber(selected);
   };
 
-  /* console.log(allCharacters); */
+
   return (
     <div className={styles.mainWrapper}>
       <Header />

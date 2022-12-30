@@ -23,7 +23,7 @@ const CharacterId = ({
 }) => {
   const { query } = useRouter();
 
-  console.log(otherCharacters);
+
 
   return (
     <>
