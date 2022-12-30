@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./index.module.scss";
 import Image from "next/image";
+import { Character } from "../../types/types";
 
-const SingleCard = ({ character }) => {
-    console.log(character);
+const SingleCard = ({ character }: {character : Character}) => {
+  console.log(character);
   return (
     <div className={styles.wrapper}>
       <Image
@@ -39,7 +40,8 @@ const SingleCard = ({ character }) => {
           </div>
         </div>
         <div className={styles.typeWrapper}>
-            {character.type.length !== 0 ? `${character.type} - ` : ""} {character.gender}
+          {character.type.length !== 0 ? `${character.type} - ` : ""}{" "}
+          {character.gender}
         </div>
       </div>
     </div>

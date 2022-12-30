@@ -1,8 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import styles from "./index.module.scss";
+import { Character } from "../../types/types";
 
-const OtherCharacterCard = ({ data }) => {
+const OtherCharacterCard = ({ data } : {data: Character}) => {
   return (
     <div className={styles.wrapper}>
       <Image src={data.image} width={90} height={90} alt={data.name} />
