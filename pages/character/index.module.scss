@@ -16,3 +16,20 @@
   flex-wrap: wrap;
   gap: 20px;
 }
+
+@media screen and (max-width: 640px) {
+  .wrapper{
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin: 16px 16px;
+  }
+  .otherCharacters{
+    h1{
+      margin-bottom: 12px;
+    }
+  }
+  .otherCharactersWrapper{
+    flex-direction: column;
+  }
+}

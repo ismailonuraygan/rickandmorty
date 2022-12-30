@@ -47,3 +47,16 @@
     color: #818181;
     font-style: italic;
 }
+
+
+@media screen and (max-width: 640px) {
+  .wrapper{
+    width: 345px;
+    img{
+      width: 345px;
+      height: 345px;
+      margin-bottom: 16px;
+    }
+  }
+  
+}
