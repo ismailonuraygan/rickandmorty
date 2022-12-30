@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./index.module.scss";
 import { Character } from "../../types/types";
-import OtherCharacterSkeleton from "./otherCharacterSkeleton";
+import OtherCharacterSkeleton from './OtherCharacterSkeleton'
 
 const OtherCharacterCard = ({ data }: { data: Character }) => {
   const [isLoading, setLoading] = useState<boolean>(true);
