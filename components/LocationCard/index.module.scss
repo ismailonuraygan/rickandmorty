@@ -9,6 +9,7 @@
   padding-bottom: 15px;
   border-radius: 15px;
   flex-wrap: wrap;
+  
 }
 
 .cardHeader {
@@ -33,6 +34,7 @@
 }
 
 .value {
+  width: 50%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

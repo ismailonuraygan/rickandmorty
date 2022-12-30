@@ -1,10 +1,9 @@
-import React from "react";
+import React, { FC } from "react";
+import { LocationType } from "../../types/types";
 import styles from "./index.module.scss";
 
 
-const Location = ({ data }) => {
-  const {id, residents} = data;
- /*  console.log(residents); */
+const Location = ({ data }: {data : LocationType}) => {
 
   return (
     <>
