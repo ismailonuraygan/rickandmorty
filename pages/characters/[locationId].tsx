@@ -50,6 +50,7 @@ const Characters = ({ allCharacters }: { allCharacters: Character[] }) => {
         filtered={filtered}
         status={status}
         setStatus={setStatus}
+        setPageNumber={setPageNumber}
         allCharacters={allCharacters}
       />
       <div className={styles.wrapper}>

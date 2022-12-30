@@ -8,6 +8,7 @@ const Filter: FC<FilterProps> = ({
   setFiltered,
   status,
   setStatus,
+  setPageNumber,
   allCharacters,
 }) => {
   useEffect(() => {
@@ -19,7 +20,7 @@ const Filter: FC<FilterProps> = ({
       return character.status === status;
     });
     setFiltered(filteredCharacters);
-
+    setPageNumber(0)
   }, [status]);
 
   return (

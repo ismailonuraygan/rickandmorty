@@ -69,4 +69,5 @@ export interface FilterProps {
     status: string;
     setFiltered: (value: Character[]) => void
     setStatus: (value: string) => void
+    setPageNumber: (value: number) => void
 }
