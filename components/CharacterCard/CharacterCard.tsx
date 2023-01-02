@@ -10,7 +10,7 @@ const CharacterCard = ({ data }: { data: Character }) => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 500);
   }, []);
   return (
     <>

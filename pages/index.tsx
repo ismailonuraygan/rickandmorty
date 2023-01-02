@@ -24,16 +24,14 @@ import type { NextPage } from "next";
 import { LocationType } from "../types/types";
 
 const Home = ({ data }: { data: LocationType[] }) => {
-  (data);
   const [pageNumber, setPageNumber] = useState<number>(0);
-
   const usersPerPage = 3;
   const pagesVisited = pageNumber * usersPerPage;
   const pageCount = Math.ceil(data.length / usersPerPage);
   const changePage = ({ selected }: { selected: number }) => {
     setPageNumber(selected);
   };
-  (data);
+
 
   return (
     <div className={styles.mainWrapper}>
