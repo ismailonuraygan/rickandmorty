@@ -63,8 +63,6 @@ export interface LocationType {
 }
 
 export interface FilterProps {
-    datas: Character[];
-    filtered: Character[];
     allCharacters: Character[];
     status: string;
     setFiltered: (value: Character[]) => void

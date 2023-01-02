@@ -3,8 +3,6 @@ import { Character, FilterProps } from "../../types/types";
 import styles from "./filter.module.scss";
 
 const Filter: FC<FilterProps> = ({
-  datas,
-  filtered,
   setFiltered,
   status,
   setStatus,
@@ -16,7 +14,7 @@ const Filter: FC<FilterProps> = ({
       setFiltered(allCharacters);
       return;
     }
-    const filteredCharacters = datas.filter((character: Character) => {
+    const filteredCharacters = allCharacters.filter((character: Character) => {
       return character.status === status;
     });
     setFiltered(filteredCharacters);

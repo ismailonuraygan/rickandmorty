@@ -1,5 +1,5 @@
 /* Hooks */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 /* Styles */
@@ -21,15 +21,13 @@ import Previous from "../../assets/icons/previous.svg";
 import { Character, LocationType } from "../../types/types";
 import { GetServerSideProps } from "next";
 
-const Characters = ({ allCharacters }: { allCharacters: Character[] }) => {
+const Characters = ({ charactersURL }: { charactersURL: string[] }) => {
   const router = useRouter();
 
-  const [datas, setDatas] = useState(allCharacters);
-  const [filtered, setFiltered] = useState(allCharacters);
+  const [allCharacters, setAllCharacters] = useState<Character[]>([]);
+  const [filtered, setFiltered] = useState<Character[]>([]);
   const [status, setStatus] = useState("All");
-
-  const { locationId } = router.query;
-
+  const [isLoading, setLoading] = useState<boolean>(true);
 
   /*Pagination*/
   const [pageNumber, setPageNumber] = useState<number>(0);
@@ -41,25 +39,50 @@ const Characters = ({ allCharacters }: { allCharacters: Character[] }) => {
   };
 
 
+
+  async function getCharacter() {
+    try {
+      const allCharacters: Character[] = await Promise.all(
+        charactersURL.map(async (url) => {
+          const res = (await fetch(url)).json();
+          return res;
+        })
+      );
+      setAllCharacters(allCharacters);
+      setFiltered(allCharacters);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  useEffect(() => {
+    const character = async () => {
+      await getCharacter();
+      setLoading(false);
+    };
+    character();
+  }, []);
+
   return (
     <div className={styles.mainWrapper}>
       <Header />
       <Filter
-        datas={datas}
         setFiltered={setFiltered}
-        filtered={filtered}
         status={status}
         setStatus={setStatus}
         setPageNumber={setPageNumber}
         allCharacters={allCharacters}
       />
-      <div className={styles.wrapper}>
-        {filtered
-          ?.slice(pagesVisited, pagesVisited + usersPerPage)
-          .map((data, index) => (
-            <CharacterCard key={index} data={data} />
-          ))}
-      </div>
+      {isLoading ? (
+        ""
+      ) : (
+        <div className={styles.wrapper}>
+          {filtered
+            ?.slice(pagesVisited, pagesVisited + usersPerPage)
+            .map((data, index) => (
+              <CharacterCard key={index} data={data} />
+            ))}
+        </div>
+      )}
       <ReactPaginate
         previousLabel={<Previous />}
         nextLabel={<Next />}
@@ -87,16 +110,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const location: LocationType = await res.json();
   const charactersURL = location.residents;
 
-  /* All characters from specific location*/
-  const allCharacters: Character[] = await Promise.all(
-    charactersURL.map(async (url) => {
-      const res = await (await fetch(url)).json();
-      return res;
-    })
-  );
   return {
     props: {
-      allCharacters,
+      charactersURL,
     },
   };
 };
